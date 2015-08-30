@@ -19,4 +19,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # install some base packages
   config.vm.provision :shell, path: "provision.sh"
+
+  config.vm.provider :digital_ocean do |provider, override|
+    override.ssh.private_key_path = '~/.ssh/id_rsa'
+
+    provider.token = 'YOUR_API_KEY'
+    provider.image = 'ubuntu-14-04-x64'
+    provider.region = 'sgp1'
+    provider.size = '512mb'
+  end
 end
